@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>פותח את Moovit...</title>
+    <script>
+        window.onload = function() {
+            // קריאת הפרמטרים (קואורדינטות) מתוך הלינק
+            const params = new URLSearchParams(window.location.search);
+            const lat = params.get('lat');
+            const lon = params.get('lon');
+
+            if (lat && lon) {
+                // הרכבת הסכמה של מוביט והפעלתה
+                const moovitUrl = "moovit://directions?dest_lat=" + lat + "&dest_lon=" + lon;
+                const fallbackUrl = "https://play.google.com/store/apps/details?id=com.tranzmate";
+
+                // מנסה לפתוח את האפליקציה
+                window.location.href = moovitUrl;
+
+                // אם אין אפליקציה, מעביר לחנות אחרי שנייה
+                setTimeout(function() {
+                    window.location.href = fallbackUrl;
+                }, 1000);
+            } else {
+                document.body.innerHTML = "<h2>שגיאה: חסרות קואורדינטות</h2>";
+            }
+        };
+    </script>
+</head>
+<body style="text-align: center; font-family: Arial, sans-serif; margin-top: 50px;">
+    <h2>מעביר אותך לניווט ב-Moovit...</h2>
+</body>
+</html>
