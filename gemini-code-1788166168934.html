@@ -4,6 +4,40 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>פותח את Moovit...</title>
+    <style>
+        body {
+            text-align: center;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin-top: 80px;
+            background-color: #f7f9fc;
+            color: #333;
+        }
+        /* עיצוב אנימציית הטעינה - צבעים המזכירים את מוביט */
+        .spinner {
+            border: 6px solid #e0e0e0;
+            border-top: 6px solid #ee6c00; 
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 20px auto;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        .main-text {
+            font-size: 22px;
+            font-weight: bold;
+            margin-bottom: 12px;
+            color: #2c3e50;
+        }
+        .blessing-text {
+            font-size: 18px;
+            color: #555;
+            padding: 0 15px;
+        }
+    </style>
     <script>
         window.onload = function() {
             // קריאת הפרמטרים (קואורדינטות) מתוך הלינק
@@ -24,12 +58,15 @@
                     window.location.href = fallbackUrl;
                 }, 1000);
             } else {
-                document.body.innerHTML = "<h2>שגיאה: חסרות קואורדינטות</h2>";
+                // הודעת שגיאה במידה ואין קואורדינטות בלינק
+                document.body.innerHTML = "<h2 style='margin-top: 100px; color: #d32f2f;'>שגיאה: חסרות קואורדינטות</h2>";
             }
         };
     </script>
 </head>
-<body style="text-align: center; font-family: Arial, sans-serif; margin-top: 50px;">
-    <h2>מעביר אותך לניווט ב-Moovit...</h2>
+<body>
+    <div class="spinner"></div>
+    <div class="main-text">מעביר אותך לניווט ב-Moovit...</div>
+    <div class="blessing-text">דרך צלחה!! אל תשכח תפילת הדרך אם נדרש</div>
 </body>
 </html>
